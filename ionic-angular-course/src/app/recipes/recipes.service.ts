@@ -28,8 +28,10 @@ export class RecipesService {
   }
 
   getRecipe(recipeId: string) {
-    return {...this.recipes.find(recipe=> {
-      return recipe.id == recipeId;
-    })};
+    return {
+      ...this.recipes.find(recipe => {
+      return recipe.id === recipeId;
+    })
+  };
   }
 }
