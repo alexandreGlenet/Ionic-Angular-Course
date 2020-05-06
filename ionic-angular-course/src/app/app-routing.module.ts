@@ -5,23 +5,18 @@ const routes: Routes = [
 
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
   {
-    path: 'recipes',
-    
-    children:[
-      {
-        path: '',
-        loadChildren: () => import('./recipes/recipes.module').then( m => m.RecipesPageModule)
-      },
-      {
-        path: ':recipeId',
-        loadChildren: () => import('./recipes/recipe-details/recipe-details.module').then( m => m.RecipeDetailsPageModule)
-      }
-    ]
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },
-  // {
-  //   path: 'recipe-details',
-  //   loadChildren: () => import('./recipes/recipe-details/recipe-details.module').then( m => m.RecipeDetailsPageModule)
-  // },
+  {
+    path: 'places',
+    loadChildren: () => import('./places/places.module').then( m => m.PlacesPageModule)
+  },
+  {
+    path: 'bookings',
+    loadChildren: () => import('./bookings/bookings.module').then( m => m.BookingsPageModule)
+  },
+  
 ];
 
 @NgModule({
