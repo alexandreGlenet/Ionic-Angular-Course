@@ -21,7 +21,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, )//{ preloadingStrategy: PreloadAllModules }) ICI j'ai enlever le preloadingStrategy: preloadAllModules pour avoir un chargement paresseux effectifs au changement d'onglets, exemple quand je clique sur  offers on voit bien que offers va charger dans source network.
   ],
   exports: [RouterModule]
 })
