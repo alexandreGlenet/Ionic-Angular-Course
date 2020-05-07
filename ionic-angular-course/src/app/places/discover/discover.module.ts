@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { DiscoverPageRoutingModule } from './discover-routing.module';
 
+
 import { DiscoverPage } from './discover.page';
 
 @NgModule({

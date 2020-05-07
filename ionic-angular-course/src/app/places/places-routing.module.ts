@@ -5,17 +5,26 @@ import { PlacesPage } from './places.page';
 
 const routes: Routes = [
   {
-    path: '',
-    component: PlacesPage
+    path: 'tabs',
+    component: PlacesPage,
+    children: [
+      {
+        path: 'discover', // L'attribut tab dans mon ion-tab-bar renvoie au nom du chemin de la route.
+        loadChildren: () => import('./discover/discover.module').then( m => m.DiscoverPageModule)
+      },
+      {
+        path: 'offers', // L'attribut tab dans mon ion-tab-bar renvoie au nom du chemin de la route.
+        loadChildren: () => import('./offers/offers.module').then( m => m.OffersPageModule)
+      },
+      {
+        path: '', // redirection pour les cas ou places/tabs
+        redirectTo: 'places/tabs/discover', 
+        pathMatch: 'full' 
+      }
+        
+    ]
   },
-  {
-    path: 'discover',
-    loadChildren: () => import('./discover/discover.module').then( m => m.DiscoverPageModule)
-  },
-  {
-    path: 'offers',
-    loadChildren: () => import('./offers/offers.module').then( m => m.OffersPageModule)
-  }
+  
 ];
 
 @NgModule({

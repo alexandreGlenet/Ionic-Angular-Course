@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: '', redirectTo: 'places', pathMatch: 'full' },
+  { path: '', redirectTo: 'places/tabs/discover', pathMatch: 'full' }, // Ici redirection
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
