@@ -1,9 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>place-detail</ion-title>
+    <ion-buttons slot="start">
+      <!-- defaultHref est important car il indique une route au cas ou quand on refresh la page place-details que le retour en arriere renvoie à tel page. -->
+      <ion-back-button defaultHref ="/places/tabs/discover"></ion-back-button> 
+    </ion-buttons>
+    <ion-title>Place Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-button color="primary" class="ion-margin" (click)="onBookPlace()">Book</ion-button>
 </ion-content>
