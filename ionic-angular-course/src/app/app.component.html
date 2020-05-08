@@ -1,6 +1,7 @@
 <ion-app>
   <!-- Creation du menu latéral ici pour ne pas qu'il soit caché par les autres pages et qu'il soit visible partout dans l'application -->
-  <ion-menu side="start">
+  <ion-menu side="start" menuId="m1">
+    <!-- menuId dans le cas ou j'ai plusieurs menu -->
     <ion-header>
       <ion-toolbar>
         <ion-title>
@@ -11,7 +12,7 @@
     <ion-content>
       <ion-list>
         <ion-item lines="none">
-          <ion-icon name="buisness" slot="start"></ion-icon>
+          <ion-icon name="business" slot="start"></ion-icon>
           <ion-label>Discover Places</ion-label>
         </ion-item>
         <ion-item lines="none">
