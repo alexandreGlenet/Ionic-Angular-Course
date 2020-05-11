@@ -14,10 +14,10 @@ export class AuthService {
   constructor() { }
 
   login() {
-    this.userIsAuthenticated = true;
+    this._userIsAuthenticated = true;
   }
 
   logout() {
-    this.userIsAuthenticated = false;
+    this._userIsAuthenticated = false;
   }
 }

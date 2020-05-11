@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 import { logging } from 'protractor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -9,13 +10,14 @@ import { logging } from 'protractor';
 })
 export class AuthPage implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   onLogin() {
     this.authService.login();
+    this.router.navigateByUrl('/places/tabs/discover');
   }
 
 }
