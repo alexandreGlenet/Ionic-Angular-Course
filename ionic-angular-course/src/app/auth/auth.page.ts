@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth.service';
+import { logging } from 'protractor';
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthPage implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+  }
+
+  onLogin() {
+    this.authService.login();
   }
 
 }
