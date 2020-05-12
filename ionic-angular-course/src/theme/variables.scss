@@ -76,6 +76,10 @@
   --ion-color-light-tint: #f5f6f9;
 
   //--ion-padding: 14px;
+
+  // Mise en couleur de toutes les toolbars en utilisant une variable ionic.
+  --ion-toolbar-background: var(--ion-color-primary, black); // black valeur de replis mais la premiere ira toujours
+  --ion-toolbar-color: var(--ion-color-primary-contrast);
 }
 
 @media (prefers-color-scheme: dark) {
