@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController, ModalController } from '@ionic/angular';
+import { NavController, ModalController, ActionSheetController } from '@ionic/angular';
 
 import { PlacesService } from '../../places.service';
 import { Place } from '../../place.model';
@@ -13,12 +13,14 @@ import { CreateBookingComponent } from 'src/app/bookings/create-booking/create-b
 })
 export class PlaceDetailPage implements OnInit {
   place: Place;
+  //actionSheetEl: any;
 
   constructor(
     private navCtrl: NavController,
     private route: ActivatedRoute,
     private placesService: PlacesService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private actionSheetCtrl: ActionSheetController
   ) { }
 
   ngOnInit() {
@@ -37,21 +39,52 @@ export class PlaceDetailPage implements OnInit {
     // Methode via nav controller d'ionic CECI PERMET D'AVOIR L ANIMATION DE RETOUR EN ARRIERE
     //this.navCtrl.navigateBack('places/tabs/discover');
 
-    this.modalCtrl
+    this.actionSheetCtrl
     .create({
-      component: CreateBookingComponent, 
-      componentProps: { selectedPlace: this.place }
+      header: 'Choose an action',
+      buttons: [
+        {
+          text: 'Select Date',
+          // définit le code à exécuter une fois que l'utilisateur a appuyé sur cette option
+          handler: () => {
+            this.openBookingModal('select');
+          }
+        },
+        {
+          text: 'Random Date',
+          handler: () => {
+            this.openBookingModal('random');
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
     })
-    .then(modalEl=> {
-      modalEl.present();
-      return modalEl.onDidDismiss();
-    })
-    .then(resultData => {
-      console.log(resultData.data, resultData.role);
-      if(resultData.role === "confirm") {
-        console.log('BOOKED !!!');
-      }
+    .then(actionSheetEl => {
+      actionSheetEl.present();
+      //return modalEl.onDidDismiss();
     });
   }
+
+  openBookingModal(mode: 'select' | 'random') { // Select ou random
+    console.log(mode);
+    this.modalCtrl
+      .create({
+        component: CreateBookingComponent,
+        componentProps: { selectedPlace: this.place }
+      })
+      .then(modalEl => {
+        modalEl.present();
+        return modalEl.onDidDismiss();
+      })
+      .then(resultData => {
+        console.log(resultData.data, resultData.role);
+        if (resultData.role === "confirm") {
+          console.log('BOOKED !!!');
+        }
+      });
+  };
 
 }
