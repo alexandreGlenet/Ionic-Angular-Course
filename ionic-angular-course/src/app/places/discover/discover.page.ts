@@ -12,6 +12,7 @@ export class DiscoverPage implements OnInit {
 
   // 2-Ici je vais ajouter mes Lieux chargés.
   loadedPlaces: Place[];
+  listedLoadedPlaces: Place[];
 
 
   // 1-Je vais injecter mon service Places dans l'attribut de mon constructor ( grace notamment à l'injectable qui se trouve dans le places.service (qui est mis automatiquement))
@@ -23,6 +24,7 @@ export class DiscoverPage implements OnInit {
     // à une propriété privée de la classe portant le même nom et donc ici dans un service de lieux, 
     // Je peux accéder aux lieux qui utilisent ce lieu getter que j'ai défini.
     this.loadedPlaces = this.placesService.places;
+    this.listedLoadedPlaces = this.loadedPlaces.slice(1);
   }
 
   onOpenMenu() {
