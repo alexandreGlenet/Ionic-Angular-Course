@@ -38,7 +38,8 @@ export class PlacesService {
     // afin de pouvoir modifier places mais pas __places.
     // On pourra le modifier à partir d'autre endroits où nous avons accès à ce tableau.
     // Après cela je vais ajouter un model.ts de place.
-    return [...this.__places]; 
+    return [...this.__places];
+    
   }
 
   constructor() { }
