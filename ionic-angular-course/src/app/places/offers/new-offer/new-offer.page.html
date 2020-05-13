@@ -8,16 +8,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid class="ion-no-padding">
-    <ion-row class="ion-align-items-center "> <!-- ion-justify-content-center permet de centrer comme le offset -->
-      <ion-col size-sm="4" size-md="2" offset-sm="2" offset-md="4"><p>Row-1 / Col-1</p></ion-col> <!-- Offset permet de décaler le size -->
-      <ion-col size-sm="4" size-md="3">
-        <ion-card>
-          <ion-card-content>
-            <h1>The column</h1>
-            <p> Row-1 / Col-2</p>
-          </ion-card-content>
-        </ion-card>
+  <ion-grid>
+    <!-- Title -->
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label position="floating">Title</ion-label>
+          <!-- Input avec auto-complétion et auto-correction attribut d'ionic -->
+          <ion-input type="text" autocomplet autocorrect></ion-input>
+        </ion-item>       
+      </ion-col>
+    </ion-row>
+    <!-- Description -->
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label position="floating">Short Description</ion-label>
+          <ion-textarea rows="3"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- Price -->
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-item>
+          <ion-label position="floating">Price</ion-label>
+          <ion-input type="number"></ion-input>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
