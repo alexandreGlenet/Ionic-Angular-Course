@@ -13,6 +13,7 @@ import { NgForm } from '@angular/forms';
 export class AuthPage implements OnInit {
 
   isLoading = false;
+  isLogin = true;
 
   constructor(
     private authService: AuthService, 
@@ -36,6 +37,10 @@ export class AuthPage implements OnInit {
       }, 1500);
     });   
   }
+
+  onSwitchAuthMode() {
+    this.isLogin = !this.isLogin; // je permute true false true false...
+  };
 
   onSubmit(form: NgForm) {
     console.log(form);
