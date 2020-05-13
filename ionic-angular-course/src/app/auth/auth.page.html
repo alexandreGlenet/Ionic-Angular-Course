@@ -10,13 +10,37 @@
         <ion-row>
           <ion-col size-sm="6" offset-sm="3">
             <ion-list>
+              <!-- Element de saisie => email -->
               <ion-item>
                 <ion-label position="floating">E-mail</ion-label>
-                <ion-input type="email" ngModel name="email" required email></ion-input>
+                <ion-input 
+                type="email" 
+                ngModel name="email" 
+                required email
+                #emailCtrl ="ngModel" 
+                >               
+              </ion-input>
               </ion-item>
+              <!-- # Référence locale ca me donnera accès à cet objet de formulaire Angular, pour avoir un texte d'erreur couplé au ngIf -->
+              <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none">  
+                <ion-label>Should be a valid email adress</ion-label>
+              </ion-item>
+              <!-- Element de saisie => password -->
               <ion-item>
                 <ion-label position="floating">Password</ion-label>
-                <ion-input type="password" ngModel name="password" required minLength="6"></ion-input>
+                <ion-input 
+                type="password" 
+                ngModel name="password" 
+                required minlength="6"
+                #passwordCtrl = "ngModel"
+                >
+              </ion-input>
+              </ion-item>
+              <!-- Phrase d'erreur pour le password -->
+              <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched" lines="none">
+                <ion-label>
+                  Should at least be 6 characters long
+                </ion-label>
               </ion-item>
             </ion-list>
           </ion-col>
@@ -27,7 +51,13 @@
           <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>
         </div> -->
             <ion-button color="primary" type="button" fill="clear" expand="block">Switch to Login</ion-button>
-            <ion-button color="primary" type="submit" (click)="onLogin()" class="ion-margin" expand="block">
+            <ion-button color="primary" class="ion-margin"
+            type="submit" 
+            (click)="onLogin()"  
+            expand="block"
+            [disabled] = "!f.valid"
+            >
+            <!-- disabled = si ma reference locale f (donc mon formulaire) n'est pas valide et bien tu désactive le bouton -->
               Login
             </ion-button>
 
