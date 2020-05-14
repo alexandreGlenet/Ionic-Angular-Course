@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Place } from './place.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class PlacesService {
       'https://r-cf.bstatic.com/images/hotel/max1024x768/403/40322050.jpg',
       149.99,
       new Date('2019-01-01'),
-      new Date('2019-12-31')
+      new Date('2019-12-31'),
+      'abc'
     ),
     new Place(
       'P2',
@@ -25,7 +27,8 @@ export class PlacesService {
       'https://pagtour.info/wp-content/uploads/2018/01/Capture-d%C2%B9%C3%A9cran-2018-01-09-%C3%A0-10.05.06.png',
       549.85,
       new Date('2019-01-01'),
-      new Date('2019-12-31')
+      new Date('2019-12-31'),
+      'abc'
     ),
     new Place(
       'P3',
@@ -34,11 +37,13 @@ export class PlacesService {
       'https://i.pinimg.com/originals/9c/88/44/9c8844b217bdb6c17db14f51ad2e51a5.jpg',
       549.85,
       new Date('2019-01-01'),
-      new Date('2019-12-31')
+      new Date('2019-12-31'),
+      'abc'
     ),
     
   ]; 
 
+  //All places
   get places() {
     // Donc ici je retourne une copie de mon tableau __places 
     // afin de pouvoir modifier places mais pas __places.
@@ -48,9 +53,30 @@ export class PlacesService {
     
   }
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
+  // One place
   getPlace(id: string) {
     return {...this.__places.find(p => p.id === id)};
   }
+
+  addPlace(
+    title: string, 
+    description: string, 
+    price: number,
+    dateFrom: Date,
+    dateTo: Date
+  ) {
+    const newPlace = new Place(
+      Math.random().toString(),
+       title, 
+       description, 
+       'https://r-cf.bstatic.com/images/hotel/max1024x768/403/40322050.jpg', 
+       price, 
+       dateFrom, 
+       dateTo,
+       this.authService.userId 
+      );
+      this.__places.push(newPlace);
+    }
 }
