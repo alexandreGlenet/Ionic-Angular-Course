@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Place } from './place.model';
 import { AuthService } from '../auth/auth.service';
+import { BehaviorSubject } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +10,9 @@ import { AuthService } from '../auth/auth.service';
 export class PlacesService {
 
   // Je précise que mes __places seront de types Place qui vient de mon modèle.
-  private __places: Place[] = [
+  private __places = new BehaviorSubject<Place[]>([
     // Je peux me créer des données fictives ici. 
-    new Place (
+    new Place(
       'P1',
       'Manhattan Square',
       'En plein coeur de New York City',
@@ -40,8 +42,8 @@ export class PlacesService {
       new Date('2019-12-31'),
       'abc'
     ),
-    
-  ]; 
+
+  ]; ) 
 
   //All places
   get places() {
@@ -49,7 +51,7 @@ export class PlacesService {
     // afin de pouvoir modifier places mais pas __places.
     // On pourra le modifier à partir d'autre endroits où nous avons accès à ce tableau.
     // Après cela je vais ajouter un model.ts de place.
-    return [...this.__places];
+    return this.__places.asObservable();
     
   }
 
@@ -77,6 +79,9 @@ export class PlacesService {
        dateTo,
        this.authService.userId 
       );
-      this.__places.push(newPlace);
+      this.places.pipe(take(1)).subscribe(places => {
+        this.__places.next(places.concat(newPlace));
+      });
+      
     }
 }
